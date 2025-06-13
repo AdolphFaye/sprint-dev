@@ -1,0 +1,17 @@
+<!-- Bouton -->
+<button data-bs-toggle="modal" data-bs-target="#editModal1">Modifier</button>
+
+<!-- Modale -->
+<div class="modal fade" id="editModal1" tabindex="-1">
+  <div class="modal-dialog">
+    <form method="POST" action="modifier_user.php">
+      <input type="hidden" name="user_id" value="1">
+      <div class="modal-content">
+        ...
+        <input type="text" name="nom" value="Nom">
+        <input type="text" name="prenom" value="Prénom">
+        <button type="submit">Enregistrer</button>
+      </div>
+    </form>
+  </div>
+</div>
