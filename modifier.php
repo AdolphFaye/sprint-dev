@@ -1,9 +1,8 @@
 <?php
-require 'includes/db.php';
-$id = $_POST['id'];
-$nom = $_POST['nom'];
-$prenom = $_POST['prenom'];
+require 'db.php';
+
 $pdo->prepare("UPDATE users SET nom = ?, prenom = ? WHERE id = ?")
-    ->execute([$nom, $prenom, $id]);
+    ->execute([$_POST['nom'], $_POST['prenom'], $_POST['id']]);
 header("Location: users.php");
 exit();
+?>

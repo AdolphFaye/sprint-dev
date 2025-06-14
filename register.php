@@ -1,26 +1,24 @@
 <?php
-session_start();
-require 'includes/db.php';
+
+require 'db.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $nom = $_POST['nom'];
-    $prenom = $_POST['prenom'];
-    $email = $_POST['email'];
-    $mdp = password_hash($_POST['mot_de_passe'], PASSWORD_DEFAULT);
-
+   
+  $mdp = password_hash($_POST['mot_de_passe'], PASSWORD_DEFAULT);
     $stmt = $pdo->prepare("INSERT INTO users (nom, prenom, email, mot_de_passe) VALUES (?, ?, ?, ?)");
-    $stmt->execute([$nom, $prenom, $email, $mdp]);
-
+    $stmt->execute([$_POST['nom'], $_POST['prenom'], $_POST['email'], $mdp]);
     header("Location: login.php");
     exit();
 }
 ?>
-
-<!-- Formulaire d'inscription -->
-<form method="post">
-  <input name="nom" required placeholder="Nom">
-  <input name="prenom" required placeholder="Prénom">
-  <input name="email" required type="email" placeholder="Email">
-  <input name="mot_de_passe" required type="password" placeholder="Mot de passe">
-  <button type="submit">S'inscrire</button>
-</form>
+<?php include 'header.php'; ?>
+<div class="container mt-5">
+  <h2>Inscription</h2>
+  <form method="post">
+    <input name="nom" class="form-control mb-2" placeholder="Nom" required>
+    <input name="prenom" class="form-control mb-2" placeholder="Prénom" required>
+    <input name="email" class="form-control mb-2" type="email" placeholder="Email" required>
+    <input name="mot_de_passe" class="form-control mb-2" type="password" placeholder="Mot de passe" required>
+    <button class="btn btn-success">S'inscrire</button>
+  </form>
+</div>
